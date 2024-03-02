@@ -1,9 +1,24 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const express = require('express');
-const cors = require('cors');
+import { server as mockServer } from './mock.js';
+import express from 'express';
+
+import cors from 'cors';
 // const axios = require("axios");
-const { createProxyMiddleware } = require('http-proxy-middleware');
-require('dotenv').config();
+import { createProxyMiddleware } from 'http-proxy-middleware';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// const express = require('express');
+// const cors = require('cors');
+// // const axios = require("axios");
+// const { createProxyMiddleware } = require('http-proxy-middleware');
+// require('dotenv').config();
+
+if (process.env.MSW_ENABLE  === 'true') {
+    console.log('Start Mock Service Worker');
+    mockServer.listen();
+}
 
 const app = express();
 
